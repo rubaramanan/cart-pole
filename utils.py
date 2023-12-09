@@ -1,5 +1,8 @@
 from __future__ import division, absolute_import, print_function
 
+import base64
+
+import IPython
 from tf_agents.drivers import py_driver
 from tf_agents.policies import py_tf_eager_policy
 
@@ -32,3 +35,16 @@ def collect_episode(environment, policy, num_episodes):
         max_episodes=num_episodes)
     initial_time_step = environment.reset()
     driver.run(initial_time_step)
+
+
+def embed_mp4(filename):
+    """Embeds an mp4 file in the notebook."""
+    video = open(filename, 'rb').read()
+    b64 = base64.b64encode(video)
+    tag = '''
+  <video width="640" height="480" controls>
+    <source src="data:video/mp4;base64,{0}" type="video/mp4">
+  Your browser does not support the video tag.
+  </video>'''.format(b64.decode())
+
+    return IPython.display.HTML(tag)
