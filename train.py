@@ -3,11 +3,11 @@ from __future__ import division
 from __future__ import print_function
 
 import base64
-import imageio
+
 import IPython
+import imageio
 import matplotlib.pyplot as plt
 import reverb
-
 from tf_agents.replay_buffers import reverb_replay_buffer
 from tf_agents.replay_buffers import reverb_utils
 from tf_agents.specs import tensor_spec
@@ -40,7 +40,6 @@ tf_agent = create_agent()
 # policies
 eval_policy = tf_agent.policy
 collect_policy = tf_agent.collect_policy
-
 
 table_name = 'uniform_table'
 replay_buffer_signature = tensor_spec.from_spec(
