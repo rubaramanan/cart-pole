@@ -2,9 +2,6 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import base64
-
-import IPython
 import imageio
 import matplotlib.pyplot as plt
 import reverb
@@ -15,7 +12,7 @@ from tf_agents.utils import common
 
 from agent import create_agent
 from environment import get_env
-from utils import compute_avg_return, collect_episode
+from utils import compute_avg_return, collect_episode, embed_mp4
 
 # Set up a virtual display for rendering OpenAI gym environments.
 # display = pyvirtualdisplay.Display(visible=0, size=(1400, 900)).start()
@@ -111,20 +108,6 @@ plt.plot(steps, returns)
 plt.ylabel('Average Return')
 plt.xlabel('Step')
 plt.ylim(top=250)
-
-
-def embed_mp4(filename):
-    """Embeds an mp4 file in the notebook."""
-    video = open(filename, 'rb').read()
-    b64 = base64.b64encode(video)
-    tag = '''
-  <video width="640" height="480" controls>
-    <source src="data:video/mp4;base64,{0}" type="video/mp4">
-  Your browser does not support the video tag.
-  </video>'''.format(b64.decode())
-
-    return IPython.display.HTML(tag)
-
 
 num_episodes = 3
 video_filename = 'imageio.mp4'
