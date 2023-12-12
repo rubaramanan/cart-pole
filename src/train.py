@@ -14,10 +14,6 @@ def train_agent(config: ReinforceConfig):
     returns.extend(train_single_step(config) for _ in range(config.num_iterations))
     return returns
 
-    # for _ in range(num_iterations):
-    #
-    #     train_single_step(returns)
-
 
 def train_single_step(config: ReinforceConfig):
     returns = []
