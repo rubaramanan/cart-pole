@@ -4,10 +4,12 @@ import PIL.Image
 import numpy as np
 from tf_agents.environments import suite_gym, tf_py_environment
 
+from conf.config import ReinforceConfig
 
-def get_env(env_name):
+
+def get_env(config: ReinforceConfig):
     # environment
-    env = suite_gym.load(env_name)
+    env = suite_gym.load(config.env_name)
     env.reset()
     PIL.Image.fromarray(env.render())
     print('Observation Spec:')
@@ -21,8 +23,7 @@ def get_env(env_name):
     next_time_step = env.step(action)
     print('Next time step:')
     print(next_time_step)
-    train_py_env = suite_gym.load(env_name)
-    eval_py_env = suite_gym.load(env_name)
-    train_env = tf_py_environment.TFPyEnvironment(train_py_env)
-    eval_env = tf_py_environment.TFPyEnvironment(eval_py_env)
-    return train_env, train_py_env, eval_env, eval_py_env
+    config.train_py_env = suite_gym.load(config.env_name)
+    config.eval_py_env = suite_gym.load(config.env_name)
+    config.train_env = tf_py_environment.TFPyEnvironment(config.train_py_env)
+    config.eval_env = tf_py_environment.TFPyEnvironment(config.eval_py_env)
