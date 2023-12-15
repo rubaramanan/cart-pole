@@ -5,7 +5,7 @@ from typing import Any
 @dataclass
 class ReinforceConfig:
     env_name: str = "CartPole-v0"  # @param {type:"string"}
-    num_iterations: int = 50  # @param {type:"integer"}
+    num_iterations: int = 250  # @param {type:"integer"}
     collect_episodes_per_iteration: int = 2  # @param {type:"integer"}
     replay_buffer_capacity: int = 2000  # @param {type:"integer"}
     log_interval: int = 25  # @param {type:"integer"}
